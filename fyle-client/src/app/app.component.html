@@ -1,0 +1,29 @@
+<section class="mb-3">
+  <div class="flex flex-col m-4 items-center">
+    <h1 class="text-left text-4xl font-bold flex items-center justify-center">Fyle Assignment - Listing Github
+      <github-button class="inline ml-2" type="stargazers" size="large" namespace="tr1ten" repo="github-viewer" type="stargazers" size="large" aria-label="Star tr1ten/fyle-assignment on GitHub"> </github-button>
+    </h1>
+    <div class="form-control flex-col items-center md:flex-row  m-6 mb-3">
+      <label class="input-group">
+        <span>
+          <fa-icon [icon]="faGithub"></fa-icon>
+        </span>
+        <input #userInp (change)="changeUsername(userInp.value)" type="text" placeholder="tr1ten"
+          class="input input-bordered w-full" />
+      </label>
+      <button [disabled]="loading" (click)="search()" class="btn btn-secondary ml-4">
+        Search
+      </button>
+      
+    </div>
+  </div>
+  <div class="mb-3">
+    <app-display-error [error]="this.error" (errorChange)="this.error = $event"> </app-display-error>
+  </div>
+  <div *ngIf="loading; else showUser" class="flex flex-col items-center">
+    <app-loading *ngIf="this.loading"></app-loading>
+  </div>
+  <ng-template #showUser>
+    <app-user-detail [user]="this.user"></app-user-detail>
+  </ng-template>
+</section>

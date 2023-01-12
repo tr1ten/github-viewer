@@ -1,0 +1,51 @@
+<!-- This show user github profile -->
+<section *ngIf="user; else defaultUser" class="flex flex-col ">
+    <div class=" flex flex-col md:flex-row  p-10 items-center gap-4">
+        <div>
+            <img width="200px" [src]="this.user.avatar_url" class="mask-circle ">
+        </div>
+        <div class="flex flex-col gap-2">
+            <h3 class="text-2xl font-bold">
+                {{this.user.name}}
+            </h3>
+            <small>
+                @{{this.user.login}}
+            </small>
+            <p class="text-base text-gray-700">
+                {{this.user.bio || 'No bio available...'}}
+            </p>
+            <div>
+                <fa-icon class="mr-2" [icon]="faLocationDot"></fa-icon>
+                <span class="text-sm text-gray-700">
+                    {{this.user.location || 'No location available...'}}
+                </span>
+            </div>
+            <a href="{{'mailto:' + user.email}}">
+                <fa-icon class="mr-2" [icon]="faMail"></fa-icon>
+                <span class="text-sm text-gray-700">
+                    {{this.user.email || 'No email available...'}}
+                </span>
+            </a >
+        </div>
+    </div>
+    <span>
+        <fa-icon class="ml-10" [icon]="faLink"></fa-icon>
+        <a class="text-sm text-gray-700" href="{{this.user.html_url}}" target="_blank">
+            {{this.user.html_url}}
+        </a>
+    </span>
+    <div>
+        <app-display-repos 
+        [PAGE_SIZE]="PAGE_SIZE"
+        (repoPageChange)="changePage($event)"
+        [repoPage]="page"
+        [repoPages]="reposPages" 
+        [loading]="loading" [userRepos]="userRepos">
+        </app-display-repos>
+    </div>
+</section>
+<ng-template #defaultUser>
+    <div class="flex flex-col items-center ">
+        <h1 class="text-xl font-semibold m-2"> Hmm... No user to display</h1>
+        <img width="400px" src="assets/octocat.png">
+    </div>

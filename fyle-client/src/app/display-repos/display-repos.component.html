@@ -1,0 +1,70 @@
+<!-- This display user repositories with pagination -->
+<section *ngIf="!loading; else loader">
+    <div *ngIf="userRepos.length; else noRepo">
+        <ul class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
+            <li class="col-auto" *ngFor="let item of this.userRepos">
+                <a href="{{item.html_url}}" class="card h-full bg-base-100 shadow-xl hover:-translate-y-1 transition-all group">
+                    <div class="card-body">
+                      <h2 class="card-title group-hover:text-secondary transition-all">{{item.name}}</h2>
+                      <p>{{item.description || "No Description..."}}</p>
+                      <ul class="flex flex-wrap gap-1">
+                        <li *ngFor="let topic of item.topics">
+                            <span class="badge bg-slate-500">{{topic}}</span>
+                        </li>
+                      </ul>
+                      <div class="card-actions justify-end">
+                      </div>
+                    </div>
+                  </a>
+            </li>
+        </ul>
+        <div class="w-full p-8 flex items-center">
+            <div class="btn-group mx-auto">
+                <button [disabled]="repoPage===1" (click)="this.repoPageChange.emit(this.repoPage-1)" class="btn hover:bg-primary-focus btn-outline">«</button>
+                <button   [ngClass]="{
+                    'btn-active': val === repoPage
+                }" *ngFor="let val of pages" (click)="this.repoPageChange.emit(val)" class="btn hover:bg-primary-focus btn-outline  " >{{val}}</button>
+                <button [disabled]="repoPage===repoPages" (click)="this.repoPageChange.emit(this.repoPage+1)" class="btn hover:bg-primary-focus btn-outline">»</button>
+              </div>
+        </div>
+        </div>
+    <ng-template #noRepo>
+        <div class="flex m-3 items-center flex-col">
+            <img
+            width="300px"
+            src="assets/norepo.png"
+            >
+            <h4 class="text-lg italic relative -top-16"> 
+                No repositories Found!
+            </h4>
+        </div>
+    </ng-template>
+
+</section>
+<ng-template 
+#loader
+>
+<ul class="m-2 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2"
+>
+
+<a *ngFor="let item of defaultRepos" class="card h-full bg-base-100 shadow-xl p-4" id="card-link" target="_blank">
+    <div class="card__header">
+      <h3 class="card__header header__title" id="card-title">
+        <div class="skeleton skeleton-text"></div>
+        <div class="skeleton skeleton-text"></div>
+      </h3>
+    </div>
+  
+    <div class="card__body">
+      <div class="card__body body__text" id="card-details">
+        <div class="skeleton skeleton-text skeleton-text__body"></div>
+      </div>
+  
+    </div>
+  
+    <div class="card__footer" id="card-footer">
+      <div class="skeleton skeleton-text skeleton-footer"></div>
+    </div>
+  </a>
+</ul>
+</ng-template>

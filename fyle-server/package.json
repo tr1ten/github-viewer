@@ -1,0 +1,21 @@
+{
+  "name": "fyle-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@octokit/auth-oauth-app": "^5.0.4",
+    "@octokit/rest": "^19.0.5",
+    "chai": "^4.3.7",
+    "chai-http": "^4.3.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mocha": "^10.2.0",
+    "nodemon": "^2.0.20"
+  },
+  "scripts": {
+    "test": "mocha --timeout 4000",
+    "start": "nodemon index.js"
+  }
+}
