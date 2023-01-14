@@ -10,6 +10,7 @@ export interface User {
     location: string;
     public_repos: number;
     email: string;
+    twitter_username: string;
 
 };
 export interface UserRepo {

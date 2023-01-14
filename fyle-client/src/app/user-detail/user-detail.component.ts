@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { User, UserRepo } from './user';
 import { faLocationDot,faLink,faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { environment } from 'src/enviroment/enviroment';
 @Component({
   selector: 'app-user-detail',
@@ -11,11 +12,12 @@ import { environment } from 'src/enviroment/enviroment';
 export class UserDetailComponent implements OnInit {
     @Input() user!: User | null;
     faLocationDot = faLocationDot;
+    faTwitter = faTwitter;
     faLink = faLink;
     faMail = faEnvelope;
     loading = false;
     userRepos: UserRepo[] = [];
-    PAGE_SIZE = 6;
+    PAGE_SIZE = 10;
     page = 1;
     reposPages = 1;
     ngOnInit() { 

@@ -3,7 +3,7 @@
     <div *ngIf="userRepos.length; else noRepo">
         <ul class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
             <li class="col-auto" *ngFor="let item of this.userRepos">
-                <a href="{{item.html_url}}" class="card h-full bg-base-100 shadow-xl hover:-translate-y-1 transition-all group">
+                <a target="_blank" href="{{item.html_url}}" class="card h-full bg-base-100 shadow-xl hover:-translate-y-1 transition-all group">
                     <div class="card-body">
                       <h2 class="card-title group-hover:text-secondary transition-all">{{item.name}}</h2>
                       <p>{{item.description || "No Description..."}}</p>

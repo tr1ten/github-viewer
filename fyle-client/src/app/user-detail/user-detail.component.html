@@ -20,6 +20,12 @@
                     {{this.user.location || 'No location available...'}}
                 </span>
             </div>
+            <a *ngIf="this.user.twitter_username" href="{{'https://twitter.com/' + this.user.twitter_username}}">
+                <fa-icon class="mr-2" [icon]="faTwitter"></fa-icon>
+                <span class="text-sm text-gray-700">
+                    {{this.user.twitter_username}}
+                </span>
+            </a>
             <a href="{{'mailto:' + user.email}}">
                 <fa-icon class="mr-2" [icon]="faMail"></fa-icon>
                 <span class="text-sm text-gray-700">
